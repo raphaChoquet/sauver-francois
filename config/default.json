@@ -1,0 +1,23 @@
+{
+  "port": 8080,
+  "socket": false,
+  "events": [],
+  "routes": {
+    "dynamic": [
+      {
+        "path": "/",
+        "view": "index"
+      }
+    ],
+    "static": [
+      {
+        "path": "/js",
+        "folder": "js"
+      },
+      {
+        "path": "/css",
+        "folder": "css"
+      }
+    ]
+  }
+}
