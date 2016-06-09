@@ -5,10 +5,10 @@ var app = {
   config: config
 };
 
-app.server = require('./drivers/server')(app);
-app.routes = require('./drivers/routes')(app);
-app.socket = require('./drivers/socket')(app);
+app.server = require('./server/drivers/server')(app);
+app.routes = require('./server/drivers/routes')(app);
+app.socket = require('./server/drivers/socket')(app);
 
-app.room = require('./services/room')(app);
+app.room = require('./server/services/room')(app);
 
 app.server.create();

@@ -20,7 +20,7 @@ function initWebRTC (callback) {
 }
 
 function initRoom(callback) {
-	var room =  prompt('Enter room name');
+	var room = 'foo';
 
 	if (room !== '') {
 	  socket.emit('create or join', room);
@@ -48,9 +48,9 @@ socket.on('log', function(array) {
 socket.on('rooms', function(rooms) {
 	console.log(rooms);
 	for (var key in rooms) {
-		
+
 		$('#room-list').append('<li>Room ' + key + ' : ' + rooms[key].length + ' joueur(s)</li>');
 	}
 
-	
+
 });
