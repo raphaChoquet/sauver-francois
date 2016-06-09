@@ -11,7 +11,7 @@ function initWebRTC (callback) {
 	webrtc = new SimpleWebRTC({
 	    localVideoEl: 'localVideo',
 	    remoteVideosEl: 'remotesVideos',
-	    autoRequestMedia: true
+	    autoRequestMedia: false
 	});
 
 	webrtc.on('readyToCall', function () {
@@ -20,7 +20,7 @@ function initWebRTC (callback) {
 }
 
 function initRoom(callback) {
-	var room = prompt('Enter room name');
+	var room =  prompt('Enter room name');
 
 	if (room !== '') {
 	  socket.emit('create or join', room);
@@ -42,8 +42,7 @@ function initRoom(callback) {
 }
 
 function launchCall(results) {
-	console.log('results:', results);
-	console.log('webRTC:', webrtc);
+	webrtc.startLocalVideo();
 	webrtc.joinRoom(results);
 }
 
