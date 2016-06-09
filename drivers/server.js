@@ -6,7 +6,8 @@ module.exports = function (app) {
   return {
     instance: null,
     express: null,
-    /* functions */
+    
+    /// FUNCTION ///
     create: function  () {
       this.express = express();
       this.instance = http.Server(this.express);

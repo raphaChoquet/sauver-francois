@@ -1,7 +1,13 @@
 {
   "port": 8080,
-  "socket": false,
-  "events": [],
+  "socket": true,
+  "debug": true,
+  "events": [
+    {
+      "listener": "create or join",
+      "method": "room::create"
+    }
+  ],
   "routes": {
     "dynamic": [
       {
@@ -11,12 +17,16 @@
     ],
     "static": [
       {
+        "path": "/node_modules",
+        "folder": "node_modules"
+      },
+      {
         "path": "/js",
-        "folder": "js"
+        "folder": "public/js"
       },
       {
         "path": "/css",
-        "folder": "css"
+        "folder": "public/css"
       }
     ]
   }

@@ -2,6 +2,8 @@ const express = require('express');
 
 module.exports = function (app) {
   return {
+
+    /// FUNCTION ///
     create: function() {
       if (app.config.routes.dynamic.length > 0) {
         this.createDynamic();
@@ -26,7 +28,7 @@ module.exports = function (app) {
       var routes = app.config.routes.static;
       for (var i = 0; i < routes.length; i++) {
         (function (_r) {
-          app.server.express.use(_r.path, express.static(app.root + '/public/' + _r.folder));
+          app.server.express.use(_r.path, express.static(app.root + '/' + _r.folder));
         }) (routes[i]);
       }
     }
