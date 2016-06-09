@@ -5,7 +5,7 @@
   "events": [
     {
       "listener": "create or join",
-      "method": "room::create"
+      "method": "room::join"
     }
   ],
   "routes": {

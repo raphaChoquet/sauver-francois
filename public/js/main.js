@@ -3,7 +3,7 @@ var socket = io.connect();
 var webrtc = null;
 
 async.parallel([
-	async.apply(initWebRTC), 
+	async.apply(initWebRTC),
 	async.apply(initRoom)
 ], launchCall);
 
@@ -26,11 +26,6 @@ function initRoom(callback) {
 	  socket.emit('create or join', room);
 	  console.log('Attempted to create or  join room', room);
 	}
-
-	socket.on('created', function(room) {
-	  console.log('Created room ' + room);
-	});
-
 	socket.on('full', function(room) {
 	  console.log('Room ' + room + ' is full');
 	});
@@ -45,12 +40,6 @@ function launchCall(results) {
 	webrtc.startLocalVideo();
 	webrtc.joinRoom(results);
 }
-
-/* socket */
-socket.on('join', function (room){
-  console.log('Another peer made a request to join room ' + room);
-  console.log('This peer is the initiator of room ' + room + '!');
-});
 
 socket.on('log', function(array) {
   console.log.apply(console, array);
