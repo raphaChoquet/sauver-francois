@@ -29,12 +29,14 @@ module.exports = function (app) {
         var events = app.config.events;
 
         for (var i = 0; i < events.length; i++) {
-          var ev = events[i];
-          var service = ev.method.split("::")[0];
-          var method = ev.method.split("::")[1];
-          socket.on(ev.listener, function (data) {
-            app[service][method](socket, data);
-          });
+          socket.on(events[i].listener, (function (ev) {
+
+            return function (data) {
+                var service = ev.method.split("::")[0];
+                var method = ev.method.split("::")[1];
+                app[service][method](socket, data);
+            };
+          }) (events[i]));
         }
       });
     },
