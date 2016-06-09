@@ -1,4 +1,4 @@
-
+var game = require('./game/game');
 var socket = io.connect();
 var webrtc = null;
 
@@ -39,6 +39,8 @@ function initRoom(callback) {
 function launchCall(results) {
 	webrtc.startLocalVideo();
 	webrtc.joinRoom(results);
+
+	game.init();
 }
 
 socket.on('log', function(array) {
