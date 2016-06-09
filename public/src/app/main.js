@@ -2,10 +2,12 @@ var game = require('./game/game');
 var socket = io.connect();
 var webrtc = null;
 
-async.parallel([
-	async.apply(initWebRTC),
-	async.apply(initRoom)
-], launchCall);
+function start() {
+	async.parallel([
+		async.apply(initWebRTC),
+		async.apply(initRoom)
+	], launchCall);
+}
 
 function initWebRTC (callback) {
 	webrtc = new SimpleWebRTC({
@@ -38,9 +40,17 @@ function initRoom(callback) {
 
 function launchCall(results) {
 	webrtc.startLocalVideo();
-	webrtc.joinRoom(results);
-
-	game.init();
+	webrtc.joinRoom(results, function (err, roomDescription) {
+		var size = Object.keys(roomDescription.clients).length;
+		if (size > 1) {
+				webrtc.stopLocalVideo();
+				webrtc.leaveRoom();
+				alert('Room already use!');
+		}
+		else {
+			game.init();
+		}
+	});
 }
 
 socket.on('log', function(array) {
@@ -53,6 +63,6 @@ socket.on('rooms', function(rooms) {
 
 		$('#room-list').append('<li>Room ' + key + ' : ' + rooms[key].length + ' joueur(s)</li>');
 	}
-
-
 });
+
+start();
