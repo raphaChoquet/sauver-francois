@@ -44,3 +44,13 @@ function launchCall(results) {
 socket.on('log', function(array) {
   console.log.apply(console, array);
 });
+
+socket.on('rooms', function(rooms) {
+	console.log(rooms);
+	for (var key in rooms) {
+		
+		$('#room-list').append('<li>Room ' + key + ' : ' + rooms[key].length + ' joueur(s)</li>');
+	}
+
+	
+});
