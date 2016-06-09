@@ -8,10 +8,10 @@ const $            = require('gulp-load-plugins')();
 
 const paths = {
     src : {
-        js : path.join(__dirname, 'public/app')
+        js : path.join(__dirname, '/public/src/app/')
     },
     dist : {
-        js   : path.join(__dirname, '/dist/')
+        js   : path.join(__dirname, '/public/dist/')
     }
 };
 
@@ -21,7 +21,7 @@ function onError(err) {
 }
 
 gulp.task('browserify', function() {
-	gulp.src(paths.src.js + '/app.js')
+	gulp.src(paths.src.js + '/main.js')
 		.pipe($.browserify({
             insertGlobals: true,
             debug: true

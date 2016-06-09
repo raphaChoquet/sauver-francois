@@ -21,12 +21,16 @@
         "folder": "node_modules"
       },
       {
-        "path": "/js",
-        "folder": "public/src/app"
+        "path": "/dist",
+        "folder": "public/dist"
       },
       {
         "path": "/css",
         "folder": "public/src/css"
+      },
+      {
+        "path": "/img",
+        "folder": "public/img"
       }
     ]
   }
