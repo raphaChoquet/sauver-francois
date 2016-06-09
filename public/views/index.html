@@ -3,15 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Chat</title>
+  <link rel="stylesheet" href="/node_modules/material-design-lite/material.min.css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8">
 </head>
 <body>
-  <aside>
-    <ul id="room-list">
-      
-    </ul>
-  </aside>
-  <video height="300" id="localVideo"></video>
-  <div id="remotesVideos"></div>
+
+  <div class="mdl-layout mdl-js-layout">
+    <div class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout__title">Sauver François Hollande</span>
+      </div>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="sf-grid">
+        <div class="sf-grid-child sf-game-container">
+
+        </div><div class="sf-grid-child sf-chat">
+          <div id="remotesVideos"></div>
+          <video id="localVideo"></video>
+          <ul id="room-list">
+          </ul>
+        </div>
+        
+
+      </div>
+
+    </main>
+  </div>
   <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -19,6 +37,7 @@
   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   <script src="https://simplewebrtc.com/latest-v2.js"></script>
   <script src="/node_modules/async/dist/async.min.js"></script>
+  <script src="/node_modules/material-design-lite/material.min.js"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>
