@@ -27,6 +27,10 @@
       {
         "path": "/css",
         "folder": "public/src/css"
+      },
+      {
+        "path": "/img",
+        "folder": "public/img"
       }
     ]
   }

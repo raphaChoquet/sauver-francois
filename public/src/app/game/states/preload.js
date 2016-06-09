@@ -6,11 +6,11 @@
         var p = {
 
             init: function() {
-                app.game.load.image('ball', 'assets/ball.png');
-                app.game.load.image('wall', 'assets/wall.png');
-                app.game.load.image('end', 'assets/end.png');
-                app.game.load.image('badGuy', 'assets/wall.png');
-                app.game.load.image('background', 'assets/background.png');
+                app.game.load.image('ball', '../img/game/ball.png');
+                app.game.load.image('wall', '../img/game/wall.png');
+                app.game.load.image('end', '../img/game/end.png');
+                app.game.load.image('badGuy', '../img/game/wall.png');
+                app.game.load.image('background', '../img/game/background.png');
             }
 
         }

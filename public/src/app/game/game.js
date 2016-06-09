@@ -21,7 +21,7 @@
             };
 
             self.maps = maps;
-            self.game = new Phaser.Game(750, 500, Phaser.CANVAS, 'save-hollande', self.states);
+            self.game = new Phaser.Game(750, 500, Phaser.CANVAS, 'canvas-game', self.states);
         };
 
 
