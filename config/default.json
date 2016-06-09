@@ -22,11 +22,11 @@
       },
       {
         "path": "/js",
-        "folder": "public/js"
+        "folder": "public/src/app"
       },
       {
         "path": "/css",
-        "folder": "public/css"
+        "folder": "public/src/css"
       }
     ]
   }

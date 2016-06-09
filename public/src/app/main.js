@@ -22,7 +22,7 @@ function initWebRTC (callback) {
 }
 
 function initRoom(callback) {
-	var room =  prompt('Enter room name');
+	var room = 'foo';
 
 	if (room !== '') {
 	  socket.emit('create or join', room);
@@ -45,7 +45,7 @@ function launchCall(results) {
 		if (size > 1) {
 				webrtc.stopLocalVideo();
 				webrtc.leaveRoom();
-				alert('Room already use! Please enter in other room');
+				alert('Room already use!');
 		}
 	});
 }
@@ -54,5 +54,12 @@ socket.on('log', function(array) {
   console.log.apply(console, array);
 });
 
+socket.on('rooms', function(rooms) {
+	console.log(rooms);
+	for (var key in rooms) {
+
+		$('#room-list').append('<li>Room ' + key + ' : ' + rooms[key].length + ' joueur(s)</li>');
+	}
+});
 
 start();
