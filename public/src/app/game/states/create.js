@@ -17,6 +17,7 @@
                     app.game.physics.startSystem(Phaser.Physics.ARCADE);
 
                     app.assets.winSong = app.game.add.audio('win-song');
+                    app.assets.dieSong = app.game.add.audio('die-song');
 
                     // Bad Guys group init
                     _a.badGuys = app.game.add.physicsGroup(Phaser.Physics.ARCADE);
@@ -26,9 +27,7 @@
                     _a.walls = app.game.add.physicsGroup();
                     _a.walls.enableBody = true;
 
-                    //var map = Math.random() > 0.6 ? app.maps[1] : app.maps[0];
-
-                    _createMap(app.maps[0], bg);
+                    _createMap(app.maps[app.mapNumber], bg);
 
                     _a.president = app.game.add.sprite(c.startPosition.x, c.startPosition.y, 'ball');
                     app.game.physics.arcade.enable(_a.president);

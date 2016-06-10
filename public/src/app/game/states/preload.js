@@ -14,6 +14,7 @@
                 app.game.load.image('background-mask', '../img/game/background-mask.png');
 
                 app.game.load.audio('win-song', ['../img/usher.ogg']);
+                app.game.load.audio('die-song', ['../img/die.ogg']);
             }
 
         }
