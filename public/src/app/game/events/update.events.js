@@ -16,12 +16,18 @@
                 var h = document.getElementById('francois-win');
 
                 h.style.display = 'block';
+
+                console.log(app.mapNumber);
+
+                app.mapNumber = app.mapNumber == (app.maps.length -1) ? 0 : app.mapNumber + 1
+
+                console.log(app.mapNumber);
                 app.game.world.removeAll();
                 app.states.create();
 
                 app.assets.winSong.play();
 
-                setTimeout(function() { h.style.display = 'none';  app.assets.winSong.mute = true; }, 4782);
+                setTimeout(function() { h.style.display = 'none';  app.assets.winSong.destroy(); }, 4782);
             },
 
             /**
