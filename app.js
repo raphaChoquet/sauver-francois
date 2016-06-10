@@ -10,5 +10,6 @@ app.routes = require('./server/drivers/routes')(app);
 app.socket = require('./server/drivers/socket')(app);
 
 app.room = require('./server/services/room')(app);
+app.game = require('./server/services/game')(app);
 
 app.server.create();

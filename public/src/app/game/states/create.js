@@ -38,7 +38,19 @@
                     _a.arrival.physicsBodyType = Phaser.Physics.ARCADE;
 
 
+                    // SHADOW PLAYER
+                    if(app.playerType === 'player') {
+                        app.shadowTexture = app.game.add.bitmapData(app.game.width, app.game.height);
+                        app.lightSprite = app.game.add.image(app.game.camera.x, app.game.camera.y, app.shadowTexture);
+                        app.lightSprite.blendMode = Phaser.blendModes.MULTIPLY;
+                    }
+
+
                     app.cursors = app.game.input.keyboard.createCursorKeys();
+
+                    if (app.playerType === 'helper') {
+                        app.events.updateHelper();
+                    }
                 }
 
             };
@@ -83,10 +95,13 @@
 
                         if (sub === 4) {
                             var b = _a.badGuys.create(pos.x, pos.y, 'badGuy');
-                            b.body.velocity.set(app.game.rnd.integerInRange(0, 300), app.game.rnd.integerInRange(0, 300));
                             b.body.collideWorldBounds = true;
-                            b.body.bounce.x = 1;
-                            b.body.bounce.y = 1;
+
+                            if (app.playerType === 'player') {
+                                b.body.velocity.set(app.game.rnd.integerInRange(0, 300), app.game.rnd.integerInRange(0, 300));
+                                b.body.bounce.x = 1;
+                                b.body.bounce.y = 1;
+                            }
                         }
 
                         pos.x += incr;
