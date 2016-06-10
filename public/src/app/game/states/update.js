@@ -41,10 +41,10 @@
                 // Draw shadow
                 app.shadowTexture.context.fillStyle = 'rgb(10, 10, 10)';
                 app.shadowTexture.context.fillRect(0, 0, app.game.width, app.game.height);
-                var radius = 60 + app.game.rnd.integerInRange(1,10),
+                var radius = 60 + app.game.rnd.integerInRange(1,10);
 
-                heroX = app.assets.president.x,
-                heroY = app.assets.president.y;
+                var heroX = app.assets.president.x + 15;
+                var heroY = app.assets.president.y + 15;
 
                 // Draw circle of light with a soft edge
                 var gradient = app.shadowTexture.context.createRadialGradient(heroX, heroY, 10 * 0.75,heroX, heroY, radius);

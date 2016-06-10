@@ -12,6 +12,8 @@
                 app.game.load.image('badGuy', '../img/game/wall.png');
                 app.game.load.image('background', '../img/game/background.png');
                 app.game.load.image('background-mask', '../img/game/background-mask.png');
+
+                app.game.load.audio('win-song', ['../img/usher.ogg']);
             }
 
         }

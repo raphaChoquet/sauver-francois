@@ -9,13 +9,15 @@
              * End of the level
              */
             levelEnd: function() {
-                var h = document.getElementById('background-hollande');
+                var h = document.getElementById('francois-win');
 
                 h.style.display = 'block';
                 app.game.world.removeAll();
                 app.states.create();
 
-                setTimeout(function() { h.style.display = 'none'; }, 1000);
+                app.assets.winSong.play();
+
+                setTimeout(function() { h.style.display = 'none';  app.assets.winSong.mute = true; }, 4782);
             },
 
             /**

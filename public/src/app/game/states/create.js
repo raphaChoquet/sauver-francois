@@ -16,6 +16,8 @@
 
                     app.game.physics.startSystem(Phaser.Physics.ARCADE);
 
+                    app.assets.winSong = app.game.add.audio('win-song');
+
                     // Bad Guys group init
                     _a.badGuys = app.game.add.physicsGroup(Phaser.Physics.ARCADE);
                     _a.badGuys.enableBody = true;
