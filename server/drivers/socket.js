@@ -30,11 +30,14 @@ module.exports = function (app) {
 
         for (var i = 0; i < events.length; i++) {
           var ev = events[i];
-          var service = ev.method.split("::")[0];
-          var method = ev.method.split("::")[1];
-          socket.on(ev.listener, function (data) {
-            app[service][method](socket, data);
-          });
+
+          socket.on(ev.listener, (function (ev) {
+              var service = ev.method.split("::")[0];
+              var method = ev.method.split("::")[1];
+              return function (data) {
+                app[service][method](socket, data);
+              };
+          }) (ev));
         }
       });
     },

@@ -11,6 +11,7 @@
                 app.game.load.image('end', '../img/game/end.png');
                 app.game.load.image('badGuy', '../img/game/wall.png');
                 app.game.load.image('background', '../img/game/background.png');
+                app.game.load.image('background-mask', '../img/game/background-mask.png');
             }
 
         }

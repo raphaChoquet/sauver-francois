@@ -11,7 +11,10 @@
             arrival: null
         };
 
-        self.init = function() {
+        self.init = function(playerType, socket) {
+            console.log('game : ' + playerType);
+            self.playerType = playerType;
+            self.socket = socket;
             self.events = events;
             self.cursors = null;
             self.states = {

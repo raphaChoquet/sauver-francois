@@ -1,19 +1,23 @@
 {
-  "port": 8080,
-  "socket": true,
-  "debug": true,
-  "events": [
-    {
-      "listener": "create or join",
-      "method": "room::join"
-    }
-  ],
-  "routes": {
-    "dynamic": [
-      {
-        "path": "/",
-        "view": "index"
-      }
+    "port": 8080,
+    "socket": true,
+    "debug": true,
+    "events": [
+        {
+            "listener": "create or join",
+            "method": "room::join"
+        },
+        {
+            "listener": "game.update",
+            "method": "game::update"
+        }
+    ],
+    "routes": {
+        "dynamic": [
+            {
+                "path": "/",
+                "view": "index"
+            }
     ],
     "static": [
       {

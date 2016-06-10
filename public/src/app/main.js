@@ -1,6 +1,7 @@
 var game = require('./game/game');
 var socket = io.connect();
 var webrtc = null;
+var playerType = null;
 
 function start() {
 	async.parallel([
@@ -22,19 +23,19 @@ function initWebRTC (callback) {
 }
 
 function initRoom(callback) {
-	var room = 'foo';
+	var room = 'myroomsss';
 
 	if (room !== '') {
-	  socket.emit('create or join', room);
-	  console.log('Attempted to create or  join room', room);
+		socket.emit('create or join', room);
+		console.log('Attempted to create or  join room', room);
 	}
 	socket.on('full', function(room) {
-	  console.log('Room ' + room + ' is full');
+		console.log('Room ' + room + ' is full');
 	});
 
-	socket.on('joined', function(room) {
-	  console.log('joined: ' + room);
-	  callback(room);
+	socket.on('joined', function(info, socket, _playerType) {
+		playerType = _playerType;
+		callback(room);
 	});
 }
 
@@ -42,13 +43,14 @@ function launchCall(results) {
 	webrtc.startLocalVideo();
 	webrtc.joinRoom(results, function (err, roomDescription) {
 		var size = Object.keys(roomDescription.clients).length;
+
 		if (size > 1) {
 				webrtc.stopLocalVideo();
 				webrtc.leaveRoom();
 				alert('Room already use!');
 		}
 		else {
-			game.init();
+			game.init(playerType, socket);
 		}
 	});
 }
@@ -58,7 +60,6 @@ socket.on('log', function(array) {
 });
 
 socket.on('rooms', function(rooms) {
-	console.log(rooms);
 	for (var key in rooms) {
 
 		$('#room-list').append('<li>Room ' + key + ' : ' + rooms[key].length + ' joueur(s)</li>');
