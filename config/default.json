@@ -6,6 +6,14 @@
     {
       "listener": "create or join",
       "method": "room::join"
+    },
+    {
+      "listener": "get rooms",
+      "method": "room::getAll"
+    },
+    {
+      "listener": "game.update",
+      "method": "game::update"
     }
   ],
   "routes": {
