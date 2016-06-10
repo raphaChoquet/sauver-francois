@@ -42,11 +42,17 @@
                     _a.arrival.physicsBodyType = Phaser.Physics.ARCADE;
 
 
-                    // SHADOW PLAYER
+                    // Shadow layer
                     if(app.playerType === 'player') {
                         app.shadowTexture = app.game.add.bitmapData(app.game.width, app.game.height);
                         app.lightSprite = app.game.add.image(app.game.camera.x, app.game.camera.y, app.shadowTexture);
                         app.lightSprite.blendMode = Phaser.blendModes.MULTIPLY;
+                    }
+
+                    // Win event for the helper
+                    if (app.playerType === 'helper') {
+                        console.log('heyey');
+                        app.socket.on('game.winHelper', function() { console.log('win'); app.events.levelEnd(); })
                     }
 
 

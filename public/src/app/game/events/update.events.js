@@ -9,6 +9,10 @@
              * End of the level
              */
             levelEnd: function() {
+                if (app.playerType === 'player') {
+                    app.socket.emit('game.win');
+                }
+
                 var h = document.getElementById('francois-win');
 
                 h.style.display = 'block';
