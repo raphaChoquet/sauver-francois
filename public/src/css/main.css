@@ -75,10 +75,16 @@ nav {
   right: 0;
 }
 
-#page-intro {
+#page-intro{
   position: relative;
   padding-top: 65px;
 }
+
+#page-game  {
+  position: relative;
+  padding-top: 90px;
+}
+
 
 #hook {
   width: 66.6666%;
