@@ -10,7 +10,7 @@
 }
 
 .sf-grid-child:not(:first-child) {
-  margin-left: 10px;
+  
 }
 
 .sf-grid-child:not(:last-child) {
@@ -45,4 +45,19 @@
   height: calc(150px / (4/3));
   border: 1px solid #ccc;
   box-sizing: border-box;
+}
+
+#francois-win {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 750px;
+    height: 500px;
+    overflow: hidden;
+    display: none;
+}
+
+#francois-win img {
+    width: 100%;
+    height: auto;
 }
