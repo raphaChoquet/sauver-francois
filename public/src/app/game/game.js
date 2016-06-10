@@ -11,9 +11,9 @@
             arrival: null
         };
 
-        self.init = function(playerType, socket) {
-            console.log('game : ' + playerType);
+        self.init = function(playerType, playerRoom, socket) {
             self.playerType = playerType;
+            self.room = playerRoom;
             self.socket = socket;
             self.events = events;
             self.cursors = null;

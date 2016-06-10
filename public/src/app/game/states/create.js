@@ -51,8 +51,7 @@
 
                     // Win event for the helper
                     if (app.playerType === 'helper') {
-                        console.log('heyey');
-                        app.socket.on('game.winHelper', function() { console.log('win'); app.events.levelEnd(); })
+                        app.socket.on('game.winHelper', function() { app.events.levelEnd(); })
                     }
 
 

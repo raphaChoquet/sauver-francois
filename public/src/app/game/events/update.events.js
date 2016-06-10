@@ -10,7 +10,7 @@
              */
             levelEnd: function() {
                 if (app.playerType === 'player') {
-                    app.socket.emit('game.win');
+                    app.socket.emit('game.win', app.room);
                 }
 
                 var h = document.getElementById('francois-win');
@@ -45,7 +45,7 @@
                     badGuys: badGuys
                 };
 
-                app.socket.emit('game.update', updates);
+                app.socket.emit('game.update', {updates: updates, room: app.room});
             },
 
             updateHelper: function() {
