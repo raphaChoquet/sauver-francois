@@ -2,6 +2,7 @@ var game = require('./game/game');
 var socket = io.connect();
 var webrtc = null;
 var room  = '';
+var playerType = null;
 
 function start() {
     async.parallel([
@@ -23,7 +24,6 @@ function initWebRTC (callback) {
 }
 
 function initRoom(callback) {
-
     if (room !== '') {
       socket.emit('create or join', room);
       console.log('Attempted to create or  join room', room);
@@ -32,10 +32,10 @@ function initRoom(callback) {
       console.log('Room ' + room + ' is full');
     });
 
-    socket.on('joined', function(room) {
-      console.log('joined: ' + room);
-      callback(room);
-    });
+    socket.on('joined', function(info, socket, _playerType) {
+		playerType = _playerType;
+		callback(room);
+	});
 }
 
 function launchCall(results) {
@@ -51,7 +51,7 @@ function launchCall(results) {
         else {
             $('#page-game').show();
             $('#page-intro').hide();
-            game.init();
+            game.init(playerType, socket);
         }
     });
 }

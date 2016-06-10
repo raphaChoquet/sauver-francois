@@ -10,6 +10,10 @@
     {
       "listener": "get rooms",
       "method": "room::getAll"
+    },
+    {
+      "listener": "game.update",
+      "method": "game::update"
     }
   ],
   "routes": {
