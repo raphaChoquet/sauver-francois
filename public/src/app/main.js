@@ -41,6 +41,7 @@ function initRoom(callback) {
 function launchCall(results) {
     webrtc.startLocalVideo();
     webrtc.joinRoom(results, function (err, roomDescription) {
+        console.log('join room');
         var size = Object.keys(roomDescription.clients).length;
         if (size > 1) {
                 webrtc.stopLocalVideo();
@@ -64,13 +65,17 @@ socket.on('retrieve rooms', function(rooms) {
     for (var key in rooms) {
         $('#room-list').append('<li>Room ' + key + ' : ' + rooms[key].length + ' joueur(s)</li><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent join-room" data-room="'+ key +'">Join room</button>');
     }
-    $(".join-room").click(join);
+    $(".join-room").click(join); 
 });
 
 $(function(){
     $('#page-game').hide();
     $('#page-intro').show();
     $('#create-room').click(create);
+    // $('form').submit(function(e){
+    //     create();
+    //     e.preventDefault();
+    // })
     socket.emit('get rooms', {});
 });
 
