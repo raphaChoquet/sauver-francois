@@ -6,6 +6,10 @@
     {
       "listener": "create or join",
       "method": "room::join"
+    },
+    {
+      "listener": "get rooms",
+      "method": "room::getAll"
     }
   ],
   "routes": {

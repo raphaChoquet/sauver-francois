@@ -1,68 +1,90 @@
 var game = require('./game/game');
 var socket = io.connect();
 var webrtc = null;
+var room  = '';
 
 function start() {
-	async.parallel([
-		async.apply(initWebRTC),
-		async.apply(initRoom)
-	], launchCall);
+    async.parallel([
+        async.apply(initWebRTC),
+        async.apply(initRoom)
+    ], launchCall);
 }
 
 function initWebRTC (callback) {
-	webrtc = new SimpleWebRTC({
-	    localVideoEl: 'localVideo',
-	    remoteVideosEl: 'remotesVideos',
-	    autoRequestMedia: false
-	});
+    webrtc = new SimpleWebRTC({
+        localVideoEl: 'localVideo',
+        remoteVideosEl: 'remotesVideos',
+        autoRequestMedia: false
+    });
 
-	webrtc.on('readyToCall', function () {
-	    callback();
-	});
+    webrtc.on('readyToCall', function () {
+        callback();
+    });
 }
 
 function initRoom(callback) {
-	var room = 'foo';
 
-	if (room !== '') {
-	  socket.emit('create or join', room);
-	  console.log('Attempted to create or  join room', room);
-	}
-	socket.on('full', function(room) {
-	  console.log('Room ' + room + ' is full');
-	});
+    if (room !== '') {
+      socket.emit('create or join', room);
+      console.log('Attempted to create or  join room', room);
+    }
+    socket.on('full', function(room) {
+      console.log('Room ' + room + ' is full');
+    });
 
-	socket.on('joined', function(room) {
-	  console.log('joined: ' + room);
-	  callback(room);
-	});
+    socket.on('joined', function(room) {
+      console.log('joined: ' + room);
+      callback(room);
+    });
 }
 
 function launchCall(results) {
-	webrtc.startLocalVideo();
-	webrtc.joinRoom(results, function (err, roomDescription) {
-		var size = Object.keys(roomDescription.clients).length;
-		if (size > 1) {
-				webrtc.stopLocalVideo();
-				webrtc.leaveRoom();
-				alert('Room already use!');
-		}
-		else {
-			game.init();
-		}
-	});
+    webrtc.startLocalVideo();
+    webrtc.joinRoom(results, function (err, roomDescription) {
+        var size = Object.keys(roomDescription.clients).length;
+        if (size > 1) {
+                webrtc.stopLocalVideo();
+                webrtc.leaveRoom();
+                alert('Room already used !');
+        }
+        else {
+            $('#page-game').show();
+            $('#page-intro').hide();
+            game.init();
+        }
+    });
 }
 
 socket.on('log', function(array) {
   console.log.apply(console, array);
 });
 
-socket.on('rooms', function(rooms) {
-	console.log(rooms);
-	for (var key in rooms) {
-
-		$('#room-list').append('<li>Room ' + key + ' : ' + rooms[key].length + ' joueur(s)</li>');
-	}
+socket.on('retrieve rooms', function(rooms) {
+    console.log(rooms);
+    for (var key in rooms) {
+        $('#room-list').append('<li>Room ' + key + ' : ' + rooms[key].length + ' joueur(s)</li><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent join-room" data-room="'+ key +'">Join room</button>');
+    }
+    $(".join-room").click(join);
 });
 
-start();
+$(function(){
+    $('#page-game').hide();
+    $('#page-intro').show();
+    $('#create-room').click(create);
+    socket.emit('get rooms', {});
+});
+
+function create(){
+    var room_name = $('#sample1').val();
+    room = room_name;
+    start();
+};
+
+function join(){
+    console.log('join');
+    room = $(this).data('room');
+    start();
+};
+
+
+//
