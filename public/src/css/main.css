@@ -61,3 +61,46 @@
     width: 100%;
     height: auto;
 }
+
+nav {
+  position: fixed;
+  z-index: 10;
+}
+
+#rooms-col {
+  border-left: 1px solid #ccc;
+  min-height: 100vh;
+  background-color: #ecf0f1;
+  position: fixed;
+  right: 0;
+}
+
+#page-intro {
+  position: relative;
+  padding-top: 65px;
+}
+
+#hook {
+  width: 66.6666%;
+  margin: 50px auto;
+}
+
+.text-center {
+  width: 66.6666%;
+  margin: 0 auto;
+}
+
+#francois, #manuel {
+  text-align: left;
+}
+
+#francois {
+  border-right: 1px solid #ccc;
+}
+
+h3 {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
