@@ -26,7 +26,7 @@
                     _a.walls = app.game.add.physicsGroup();
                     _a.walls.enableBody = true;
 
-                    var map = Math.random() > 0.6 ? app.maps[1] : app.maps[0];
+                    //var map = Math.random() > 0.6 ? app.maps[1] : app.maps[0];
 
                     _createMap(app.maps[0], bg);
 
