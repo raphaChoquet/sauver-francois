@@ -17,6 +17,7 @@
                     app.game.physics.startSystem(Phaser.Physics.ARCADE);
 
                     app.assets.winSong = app.game.add.audio('win-song');
+                    app.assets.dieSong = app.game.add.audio('die-song');
 
                     // Bad Guys group init
                     _a.badGuys = app.game.add.physicsGroup(Phaser.Physics.ARCADE);
@@ -26,7 +27,7 @@
                     _a.walls = app.game.add.physicsGroup();
                     _a.walls.enableBody = true;
 
-                    _createMap(app.maps[0], bg);
+                    _createMap(app.maps[app.mapNumber], bg);
 
                     _a.president = app.game.add.sprite(c.startPosition.x, c.startPosition.y, 'ball');
                     app.game.physics.arcade.enable(_a.president);
@@ -40,11 +41,16 @@
                     _a.arrival.physicsBodyType = Phaser.Physics.ARCADE;
 
 
-                    // SHADOW PLAYER
+                    // Shadow layer
                     if(app.playerType === 'player') {
                         app.shadowTexture = app.game.add.bitmapData(app.game.width, app.game.height);
                         app.lightSprite = app.game.add.image(app.game.camera.x, app.game.camera.y, app.shadowTexture);
                         app.lightSprite.blendMode = Phaser.blendModes.MULTIPLY;
+                    }
+
+                    // Win event for the helper
+                    if (app.playerType === 'helper') {
+                        app.socket.on('game.winHelper', function() { app.events.levelEnd(); })
                     }
 
 

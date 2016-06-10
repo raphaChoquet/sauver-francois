@@ -11,9 +11,9 @@
             arrival: null
         };
 
-        self.init = function(playerType, socket) {
-            console.log('game : ' + playerType);
+        self.init = function(playerType, playerRoom, socket) {
             self.playerType = playerType;
+            self.room = playerRoom;
             self.socket = socket;
             self.events = events;
             self.cursors = null;
@@ -24,6 +24,8 @@
             };
 
             self.maps = maps;
+            self.mapNumber = 0;// Math.floor(Math.random() * (self.maps.length));
+
             self.game = new Phaser.Game(750, 500, Phaser.CANVAS, 'canvas-game', self.states);
         };
 

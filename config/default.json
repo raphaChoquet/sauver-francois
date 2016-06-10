@@ -14,6 +14,10 @@
     {
       "listener": "game.update",
       "method": "game::update"
+    },
+    {
+      "listener": "game.win",
+      "method": "game::win"
     }
   ],
   "routes": {

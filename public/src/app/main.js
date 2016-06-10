@@ -2,6 +2,7 @@ var game = require('./game/game');
 var socket = io.connect();
 var webrtc = null;
 var room  = '';
+var playerRoom = null;
 var playerType = null;
 
 function start() {
@@ -32,7 +33,8 @@ function initRoom(callback) {
       console.log('Room ' + room + ' is full');
     });
 
-    socket.on('joined', function(info, socket, _playerType) {
+    socket.on('joined', function(room, socket, _playerType) {
+        playerRoom = room;
 		playerType = _playerType;
 		callback(room);
 	});
@@ -51,7 +53,8 @@ function launchCall(results) {
         else {
             $('#page-game').show();
             $('#page-intro').hide();
-            game.init(playerType, socket);
+            console.log(socket);
+            game.init(playerType, playerRoom, socket);
         }
     });
 }
