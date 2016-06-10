@@ -26,7 +26,9 @@
                     _a.walls = app.game.add.physicsGroup();
                     _a.walls.enableBody = true;
 
-                    _createMap(app.maps[0], bg);
+                    var map = Math.random() > 0.6 ? app.maps[1] : app.maps[0];
+
+                    _createMap(map, bg);
 
                     _a.president = app.game.add.sprite(c.startPosition.x, c.startPosition.y, 'ball');
                     app.game.physics.arcade.enable(_a.president);
