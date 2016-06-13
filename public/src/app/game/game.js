@@ -24,7 +24,7 @@
             };
 
             self.maps = maps;
-            self.mapNumber = 0;// Math.floor(Math.random() * (self.maps.length));
+            self.mapNumber = 0; // Math.floor(Math.random() * (self.maps.length));
 
             self.game = new Phaser.Game(750, 500, Phaser.CANVAS, 'canvas-game', self.states);
         };

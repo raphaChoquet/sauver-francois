@@ -1,28 +1,28 @@
 {
-  "name": "socket-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "supervisor app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Raphaël Choquet",
-  "license": "ISC",
-  "dependencies": {
-    "async": "^2.0.0-rc.6",
-    "config": "^1.21.0",
-    "express": "^4.13.4",
-    "lodash": "^4.13.1",
-    "materialize-css": "^0.97.6",
-    "socket.io": "^1.4.6"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-browserify": "^0.5.1",
-    "gulp-load-plugins": "^1.2.4",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.5.3",
-    "run-sequence": "^1.2.1"
-  }
+    "name": "socket-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "supervisor app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Raphaël Choquet",
+    "license": "ISC",
+    "dependencies": {
+        "async": "^2.0.0-rc.6",
+        "config": "^1.21.0",
+        "express": "^4.13.4",
+        "lodash": "^4.13.1",
+        "materialize-css": "^0.97.6",
+        "socket.io": "^1.4.6"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-browserify": "^0.5.1",
+        "gulp-load-plugins": "^1.2.4",
+        "gulp-rename": "^1.2.2",
+        "gulp-uglify": "^1.5.3",
+        "run-sequence": "^1.2.1"
+    }
 }
