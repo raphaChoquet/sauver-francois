@@ -20,8 +20,6 @@
                 console.log(app.mapNumber);
 
                 app.mapNumber = app.mapNumber == (app.maps.length -1) ? 0 : app.mapNumber + 1
-
-                console.log(app.mapNumber);
                 app.game.world.removeAll();
                 app.states.create();
 

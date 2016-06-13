@@ -19,6 +19,9 @@
                     app.assets.winSong = app.game.add.audio('win-song');
                     app.assets.dieSong = app.game.add.audio('die-song');
 
+                    // Gestion de la map
+                    // app.map =
+
                     // Bad Guys group init
                     _a.badGuys = app.game.add.physicsGroup(Phaser.Physics.ARCADE);
                     _a.badGuys.enableBody = true;
