@@ -41,18 +41,18 @@
                 // Draw shadow
                 app.shadowTexture.context.fillStyle = 'rgb(10, 10, 10)';
                 app.shadowTexture.context.fillRect(0, 0, app.game.width, app.game.height);
-                var radius = 60 + app.game.rnd.integerInRange(1,10);
+                var radius = 60 + app.game.rnd.integerInRange(1, 10);
 
                 var heroX = app.assets.president.x + 15;
                 var heroY = app.assets.president.y + 15;
 
                 // Draw circle of light with a soft edge
-                var gradient = app.shadowTexture.context.createRadialGradient(heroX, heroY, 10 * 0.75,heroX, heroY, radius);
+                var gradient = app.shadowTexture.context.createRadialGradient(heroX, heroY, 10 * 0.75, heroX, heroY, radius);
                 gradient.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
                 gradient.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
                 app.shadowTexture.context.beginPath();
                 app.shadowTexture.context.fillStyle = gradient;
-                app.shadowTexture.context.arc(heroX, heroY, radius, 0, Math.PI*2, false);
+                app.shadowTexture.context.arc(heroX, heroY, radius, 0, Math.PI * 2, false);
                 app.shadowTexture.context.fill();
                 // This just tells the engine it should update the texture cache
                 app.shadowTexture.dirty = true;

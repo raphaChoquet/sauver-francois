@@ -1,8 +1,8 @@
 const config = require('config');
 
 var app = {
-  root: __dirname,
-  config: config
+    root: __dirname,
+    config: config
 };
 
 app.server = require('./server/drivers/server')(app);

@@ -1,17 +1,17 @@
 /* eslint-disable */
 'use strict';
 
-const path         = require('path');
-const gulp         = require('gulp');
-const runSequence  = require('run-sequence');
-const $            = require('gulp-load-plugins')();
+const path = require('path');
+const gulp = require('gulp');
+const runSequence = require('run-sequence');
+const $ = require('gulp-load-plugins')();
 
 const paths = {
-    src : {
-        js : path.join(__dirname, '/public/src/app/')
+    src: {
+        js: path.join(__dirname, '/public/src/app/')
     },
-    dist : {
-        js   : path.join(__dirname, '/public/dist/')
+    dist: {
+        js: path.join(__dirname, '/public/dist/')
     }
 };
 
@@ -21,14 +21,14 @@ function onError(err) {
 }
 
 gulp.task('browserify', function() {
-	gulp.src(paths.src.js + '/main.js')
-		.pipe($.browserify({
+    gulp.src(paths.src.js + '/main.js')
+        .pipe($.browserify({
             insertGlobals: true,
             debug: true
-		}))
+        }))
         .on('error', onError)
         .pipe($.rename('save-hollande.js'))
-		.pipe(gulp.dest(paths.dist.js))
+        .pipe(gulp.dest(paths.dist.js))
         .pipe($.uglify())
         .pipe($.rename('save-hollande.min.js'))
         .pipe(gulp.dest(paths.dist.js));

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Sauver François</title>
@@ -9,122 +10,117 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8">
 </head>
+
 <body>
 
-  <nav class="light-blue lighten-1" role="navigation">
-    <h1 class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo center">Logo</a>
-    </h1>
-  </nav>
+    <nav class="light-blue lighten-1" role="navigation">
+        <h1 class="nav-wrapper container">
+            <a id="logo-container" href="/" class="brand-logo center">Logo</a>
+        </h1>
+    </nav>
 
-  <div id="page-intro">
-    <div class="row">
-      <div class="col s9 center">
-        <h2 class="header center orange-text">Sauvez François !</h1>
-        <div class="row center">
-          <p class="text-center" id="hook">François Hollande est perdu place de la République ! Serez vous capable de le sortir du petrain dans lequel il s'est fouré ?</p>
-          <p class="light text-center">Sauver François est un mini jeu qui consiste à aider François Hollande à s'enfuir de la place de la République en évitant les manifestants qui y fourmillent !</p>
-        </div>
-        <h3 class="header">Deux joueurs !</h3>
-        <div class="col s6" id="francois">
-          <h4 class="header center">
-            François Hollande
-          </h4>
-          <p class="light">Vous devez fuir coute que coute ! Mais comment faire alors qu'il y a des manifestants à perte de vue ? Heureusement votre fidèle premier ministre est là pour vous guider</p>
-          <p class="light">Objectif :</p>
-          <p class="light">Déplacez François Hollande jusqu'à sa voiture blindée</p>
-          <p class="light">Comment :</p>
-          <p class="light">Votre écran étant noir, mis à part un halo autour de vous, vous devez écouter votre partenaire de jeu qui va vous guide. Attention aux stands de la CGT et à Philippe Martinez qui rôde !</p>
-        </div>
-        <div class="col s6" id="manuel">
-          <h4 class="header center">
-            Manuel Valls
-          </h4>
-          <p class="light">Vous devez aider François à se mettre en sécurité ! </p>
-          <p class="light">Objectif :</p>
-          <p class="light">Aider votre partenaire à se diriger parmis la foule</p>
-          <p class="light">Comment :</p>
-          <p class="light">Vous avez une vision globale de la place alors que ce dernier est presque aveugle. Le but est de lui dire où aller pour éviter les pièges que lui réserve la place et le ramener sain et sauf chez sa chère et tendre</p>
-
-        </div>
-      </div>
-      <div class="col s3" id="rooms-col">
+    <div id="page-intro">
         <div class="row">
-          <form action="#" class="col s12">
-            <div class="row">
-              <h3>Rooms</h3>
-              <div class="input-field col s12">
-                <input type="text" placeholder="Room name" id="room-name" value="">
-                <button class="waves-effect waves-light btn" id="create-room"> Create room </button>
-              </div>
+            <div class="col s9 center">
+                <h2 class="header center orange-text">Sauvez François !</h1>
+                <div class="row center">
+                    <p class="text-center" id="hook">François Hollande est perdu place de la République ! Serez vous capable de le sortir du petrain dans lequel il s'est fouré ?</p>
+                    <p class="light text-center">Sauver François est un mini jeu qui consiste à aider François Hollande à s'enfuir de la place de la République en évitant les manifestants qui y fourmillent !</p>
+                </div>
+                <h3 class="header">Deux joueurs !</h3>
+                <div class="col s6" id="francois">
+                    <h4 class="header center">
+                        François Hollande
+                    </h4>
+                    <p class="light">Vous devez fuir coute que coute ! Mais comment faire alors qu'il y a des manifestants à perte de vue ? Heureusement votre fidèle premier ministre est là pour vous guider</p>
+                    <p class="light">Objectif :</p>
+                    <p class="light">Déplacez François Hollande jusqu'à sa voiture blindée</p>
+                    <p class="light">Comment :</p>
+                    <p class="light">Votre écran étant noir, mis à part un halo autour de vous, vous devez écouter votre partenaire de jeu qui va vous guide. Attention aux stands de la CGT et à Philippe Martinez qui rôde !</p>
+                </div>
+                <div class="col s6" id="manuel">
+                    <h4 class="header center">
+                        Manuel Valls
+                    </h4>
+                    <p class="light">Vous devez aider François à se mettre en sécurité ! </p>
+                    <p class="light">Objectif :</p>
+                    <p class="light">Aider votre partenaire à se diriger parmis la foule</p>
+                    <p class="light">Comment :</p>
+                    <p class="light">Vous avez une vision globale de la place alors que ce dernier est presque aveugle. Le but est de lui dire où aller pour éviter les pièges que lui réserve la place et le ramener sain et sauf chez sa chère et tendre</p>
+                </div>
             </div>
-          </form>
-          <ul id="room-list">
-          </ul>
+            <div class="col s3" id="rooms-col">
+                <div class="row">
+                    <form action="#" class="col s12">
+                        <div class="row">
+                            <h3>Rooms</h3>
+                            <div class="input-field col s12">
+                                <input type="text" placeholder="Room name" id="room-name" value="">
+                                <button class="waves-effect waves-light btn" id="create-room"> Create room </button>
+                            </div>
+                        </div>
+                    </form>
+                    <ul id="room-list"></ul>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <div id="page-game">
-    <div class="row">
-      <div class="col s12 center">
-      <div class="row">
-      <div class="col s9">
-        <div id="francois-win"><img src="img/game/hollande.jpg" /></div><div class="sf-grid-child sf-game-container" id="canvas-game">
+    <div id="page-game">
+        <div class="row">
+            <div class="col s12 center">
+                <div class="row">
+                    <div class="col s9">
+                        <div id="francois-win">
+                            <img src="img/game/hollande.jpg" />
+                        </div><div class="sf-grid-child sf-game-container" id="canvas-game">
 
-        </div><div class="col s3">
-          <div id="remotesVideos"></div>
-          <video id="localVideo"></video>
-
+                        </div><div class="col s3">
+                            <div id="remotesVideos"></div>
+                            <video id="localVideo"></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      </div>
-
-      </div>
     </div>
-  </div>
 
 
-<!--   <div class="mdl-layout mdl-js-layout">
-    <main id="page-game" class="mdl-layout__content">
-      <div class="sf-grid">
-        <div id="francois-win"><img src="img/game/hollande.jpg" /></div><div class="sf-grid-child sf-game-container" id="canvas-game">
+<!--
+    <div class="mdl-layout mdl-js-layout">
+        <main id="page-game" class="mdl-layout__content">
+            <div class="sf-grid">
+                <div id="francois-win"><img src="img/game/hollande.jpg" /></div><div class="sf-grid-child sf-game-container" id="canvas-game">
+                </div><div class="sf-grid-child sf-chat">
+                    <div id="remotesVideos"></div>
+                    <video id="localVideo"></video>
+                </div>
+            </div>
+        </main>
 
-        </div><div class="sf-grid-child sf-chat">
-          <div id="remotesVideos"></div>
-          <video id="localVideo"></video>
-
-        </div>
-
-
-      </div>
-
-    </main> -->
-    <!-- <main id="page-intro" class="mdl-layout__content">
-      <form action="#">
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="sample1" value="">
-          <label class="mdl-textfield__label" for="sample1">Text...</label>
-        </div>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="create-room">
-          Create room
-        </button>
-      </form>
-      <ul id="room-list">
-      </ul>
-    </main> -->
-  <!-- </div> -->
-  <script
+        <main id="page-intro" class="mdl-layout__content">
+            <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="sample1" value="">
+                    <label class="mdl-textfield__label" for="sample1">Text...</label>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="create-room">
+                    Create room
+                </button>
+            </form>
+            <ul id="room-list"></ul>
+        </main>
+    </div> -->
+    <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
-  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-  <script src="https://simplewebrtc.com/latest-v2.js"></script>
-  <script src="/node_modules/async/dist/async.min.js"></script>
-  <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.4.8/phaser.js" charset="utf-8"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.4.8/custom/phaser-arcade-physics.min.js" charset="utf-8"></script>
-  <script src="/dist/save-hollande.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="https://simplewebrtc.com/latest-v2.js"></script>
+    <script src="/node_modules/async/dist/async.min.js"></script>
+    <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.4.8/phaser.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.4.8/custom/phaser-arcade-physics.min.js" charset="utf-8"></script>
+    <script src="/dist/save-hollande.js"></script>
 </body>
 </html>
