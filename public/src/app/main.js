@@ -1,7 +1,7 @@
 var game = require('./game/game');
 var socket = io.connect();
 var webrtc = null;
-var room  = '';
+var room = '';
 var playerRoom = null;
 var playerType = null;
 
@@ -12,45 +12,44 @@ function start() {
     ], launchCall);
 }
 
-function initWebRTC (callback) {
+function initWebRTC(callback) {
     webrtc = new SimpleWebRTC({
         localVideoEl: 'localVideo',
         remoteVideosEl: 'remotesVideos',
         autoRequestMedia: false
     });
 
-    webrtc.on('readyToCall', function () {
+    webrtc.on('readyToCall', function() {
         callback();
     });
 }
 
 function initRoom(callback) {
     if (room !== '') {
-      socket.emit('create or join', room);
-      console.log('Attempted to create or  join room', room);
+        socket.emit('create or join', room);
+        console.log('Attempted to create or  join room', room);
     }
     socket.on('full', function(room) {
-      console.log('Room ' + room + ' is full');
+        console.log('Room ' + room + ' is full');
     });
 
     socket.on('joined', function(room, socket, _playerType) {
         playerRoom = room;
-		playerType = _playerType;
-		callback(room);
-	});
+        playerType = _playerType;
+        callback(room);
+    });
 }
 
 function launchCall(results) {
     webrtc.startLocalVideo();
-    webrtc.joinRoom(results, function (err, roomDescription) {
+    webrtc.joinRoom(results, function(err, roomDescription) {
         console.log('join room');
         var size = Object.keys(roomDescription.clients).length;
         if (size > 1) {
-                webrtc.stopLocalVideo();
-                webrtc.leaveRoom();
-                alert('Room already used !');
-        }
-        else {
+            webrtc.stopLocalVideo();
+            webrtc.leaveRoom();
+            alert('Room already used !');
+        } else {
             $('#page-game').show();
             $('#page-intro').hide();
             console.log(socket);
@@ -60,18 +59,18 @@ function launchCall(results) {
 }
 
 socket.on('log', function(array) {
-  console.log.apply(console, array);
+    console.log.apply(console, array);
 });
 
 socket.on('retrieve rooms', function(rooms) {
     console.log(rooms);
     for (var key in rooms) {
-        $('#room-list').append('<li>Room ' + key + ' : ' + rooms[key].length + ' joueur(s)</li><button class="waves-effect waves-light btn join-room" data-room="'+ key +'">Join room</button>');
+        $('#room-list').append('<li>Room ' + key + ' : ' + rooms[key].length + ' joueur(s)</li><button class="waves-effect waves-light btn join-room" data-room="' + key + '">Join room</button>');
     }
-    $(".join-room").click(join); 
+    $(".join-room").click(join);
 });
 
-$(function(){
+$(function() {
     $('#page-game').hide();
     $('#page-intro').show();
     $('#create-room').click(create);
@@ -82,13 +81,13 @@ $(function(){
     socket.emit('get rooms', {});
 });
 
-function create(){
+function create() {
     var room_name = $('#room-name').val();
     room = room_name;
     start();
 };
 
-function join(){
+function join() {
     console.log('join');
     room = $(this).data('room');
     start();

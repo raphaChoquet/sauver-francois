@@ -1,49 +1,37 @@
 {
-  "port": 8080,
-  "socket": true,
-  "debug": true,
-  "events": [
-    {
-      "listener": "create or join",
-      "method": "room::join"
-    },
-    {
-      "listener": "get rooms",
-      "method": "room::getAll"
-    },
-    {
-      "listener": "game.update",
-      "method": "game::update"
-    },
-    {
-      "listener": "game.win",
-      "method": "game::win"
+    "port": 8080,
+    "socket": true,
+    "debug": true,
+    "events": [{
+        "listener": "create or join",
+        "method": "room::join"
+    }, {
+        "listener": "get rooms",
+        "method": "room::getAll"
+    }, {
+        "listener": "game.update",
+        "method": "game::update"
+    }, {
+        "listener": "game.win",
+        "method": "game::win"
+    }],
+    "routes": {
+        "dynamic": [{
+            "path": "/",
+            "view": "index"
+        }],
+        "static": [{
+            "path": "/node_modules",
+            "folder": "node_modules"
+        }, {
+            "path": "/dist",
+            "folder": "public/dist"
+        }, {
+            "path": "/css",
+            "folder": "public/src/css"
+        }, {
+            "path": "/img",
+            "folder": "public/img"
+        }]
     }
-  ],
-  "routes": {
-    "dynamic": [
-      {
-        "path": "/",
-        "view": "index"
-      }
-    ],
-    "static": [
-      {
-        "path": "/node_modules",
-        "folder": "node_modules"
-      },
-      {
-        "path": "/dist",
-        "folder": "public/dist"
-      },
-      {
-        "path": "/css",
-        "folder": "public/src/css"
-      },
-      {
-        "path": "/img",
-        "folder": "public/img"
-      }
-    ]
-  }
 }
