@@ -41,13 +41,13 @@ module.exports = function(app) {
             });
         },
         disconnect: function(socket) {
-            var callbacks = app.config.disconnect;
+            var callbacks = app.config.disconnectEvents;
             for (var i = 0; i < callbacks.length; i++) {
-                var service = callbacks.split('::')[0];
-                var method = callbacks.split('::')[1];
+                var service = callbacks[i].split('::')[0];
+                var method = callbacks[i].split('::')[1];
                 app[service][method](socket);
             }
-            
+
         }
 
     };
