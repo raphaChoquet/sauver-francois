@@ -3,11 +3,17 @@
     "socket": true,
     "debug": true,
     "events": [{
-        "listener": "create or join",
+        "listener": "rooms.get",
+        "method": "room::getAll"
+    }, {
+        "listener": "room.create",
+        "method": "room::create"
+    }, {
+        "listener": "room.join",
         "method": "room::join"
     }, {
-        "listener": "get rooms",
-        "method": "room::getAll"
+        "listener": "room.leave",
+        "method": "room::leave"
     }, {
         "listener": "game.update",
         "method": "game::update"
@@ -15,6 +21,7 @@
         "listener": "game.win",
         "method": "game::win"
     }],
+    "disconnectEvents": ["room::leave"],
     "routes": {
         "dynamic": [{
             "path": "/",
