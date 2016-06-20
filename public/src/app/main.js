@@ -19,7 +19,7 @@ function initWebRTC(callback) {
     webrtc = new SimpleWebRTC({
         localVideoEl: 'localVideo',
         remoteVideosEl: 'remotesVideos',
-        autoRequestMedia: true
+        autoRequestMedia: false
     });
 
     webrtc.on('readyToCall', function() {
