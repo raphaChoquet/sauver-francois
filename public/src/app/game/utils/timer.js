@@ -11,6 +11,8 @@
             text: null,
 
             create: function() {
+                if (t.module !== null) t.module.destroy();
+
                 t.module = app.game.time.create(false);
                 t.module.loop(100, function() { t.realCount += 0.1; t.count = t.realCount.toFixed(2) }, this);
             },
