@@ -73,9 +73,9 @@
         function buildItem(room, nbrPlayer) {
             var html = '<li data-room="' + room + '">';
 
-            html += 'Room ' + room + ' : <span class="nbrPlayer">' + nbrPlayer + " joueur" + (nbrPlayer > 1 ? 's' : '') + '</span>';
+            html += 'Salon ' + room + ' : <span class="nbrPlayer">' + nbrPlayer + " joueur" + (nbrPlayer > 1 ? 's' : '') + '</span>';
             if (nbrPlayer < 2) {
-                html += '<button class="waves-effect waves-light btn join-room">Join room</button>';
+                html += '<button class="waves-effect waves-light btn join-room">Rejoindre salon</button>';
             }
             html += '</li>';
 
@@ -89,7 +89,7 @@
             if (nbrPlayer >= 2 && $item.find('.join-room').length > 0) {
                 $item.find('.join-room').remove();
             } else if (nbrPlayer < 2 && $item.find('.join-room').length === 0) {
-                $item.append('<button class="waves-effect waves-light btn join-room">Join room</button>');
+                $item.append('<button class="waves-effect waves-light btn join-room">Rejoindre salon</button>');
             }
         }
     };
