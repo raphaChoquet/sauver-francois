@@ -6,30 +6,22 @@ var webrtc = null;
 $(function () {
     $('#page-game').hide();
     $('#page-intro').show();
-    async.parallel([
-        async.apply(initWebRTC),
-        async.apply(function (callback) {
-            room.init(socket, callback);
-        })
-    ], launchGame);
+    room.init(socket, initWebRTC);
 });
 
-function initWebRTC(callback) {
-    console.log('prepare');
+function initWebRTC() {
     webrtc = new SimpleWebRTC({
         localVideoEl: 'localVideo',
         remoteVideosEl: 'remotesVideos',
-        autoRequestMedia: false
+        autoRequestMedia: true
     });
 
     webrtc.on('readyToCall', function() {
-        callback();
+        launchGame();
     });
 }
 
 function launchGame() {
-    console.log('launch--');
-    webrtc.startLocalVideo();
     webrtc.joinRoom(room.myRoom, function(err, roomDescription) {
         var size = Object.keys(roomDescription.clients).length;
         if (size > 1) {
