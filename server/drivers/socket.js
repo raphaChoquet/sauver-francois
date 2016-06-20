@@ -41,7 +41,13 @@ module.exports = function(app) {
             });
         },
         disconnect: function(socket) {
-            app.room.leave(socket.id);
+            var callbacks = app.config.disconnectEvents;
+            for (var i = 0; i < callbacks.length; i++) {
+                var service = callbacks[i].split('::')[0];
+                var method = callbacks[i].split('::')[1];
+                app[service][method](socket);
+            }
+
         }
 
     };

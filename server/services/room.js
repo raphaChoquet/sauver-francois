@@ -6,54 +6,61 @@ module.exports = function(app) {
     return {
         rooms: {},
 
-        /// FUNCTION ///
-        getAll: function(socket) {
-            socket.emit('retrieve rooms', app.room.rooms);
+        getAll: function(socket, data) {
+            socket.emit('room.retrieved', this.rooms);
         },
-        /// FUNCTION ///
+
+        create: function(socket, room) {
+            if (this.rooms[room]) {
+                app.socket.log('ERROR: Room ' + room + ' exist');
+                socket.emit('room.exist', room);
+                return;
+            }
+            let playerType = 'player';
+            this.rooms[room] = [{
+                id: socket.id,
+                player: playerType
+            }];
+
+            socket.join(room);
+            app.socket.log('Client ID ' + socket.id + ' created room ' + room);
+
+            app.socket.io.emit('room.created', room, socket.id, playerType);
+        },
+
         join: function(socket, room) {
-            app.socket.log('Received request to create or join room ' + room);
 
             if (!this.rooms[room]) {
-                this.create(socket, room);
+                socket.emit('room.dont-exist', room);
+            } else if (this.rooms[room].length === 2) {
+                socket.emit('room.full', room);
             }
 
-            if (this.rooms[room].length === 2) {
-                // full
-                socket.emit('full', room);
-            } else {
-                // join
-                let active = _.get(this.rooms[room], '[0].player', null);
-                let playerType = active === 'player' ? 'helper' : 'player';
-
-                this.rooms[room].push({
-                    id: socket.id,
-                    player: playerType
-                });
-
-                socket.join(room);
-                socket.emit('joined', room, socket.id, playerType);
-                app.socket.log(this.rooms[room]);
-            }
-
-            socket.emit('rooms', {
-                rooms: app.room.rooms
+            let active = _.get(this.rooms[room], '[0].player', null);
+            let playerType = active === 'player' ? 'helper' : 'player';
+            this.rooms[room].push({
+                id: socket.id,
+                player: playerType
             });
+            socket.join(room);
+            app.socket.io.emit('room.joined', room, socket.id, playerType);
         },
-        create: function(socket, room) {
-            this.rooms[room] = [];
-            app.socket.log('Client ID ' + socket.id + ' created room ' + room);
-        },
-        leave: function(id) {
+
+        leave: function(socket, data) {
             for (var r in this.rooms) {
                 var _user = _.findKey(this.rooms[r], {
-                    id: id
+                    id: socket.id
                 });
 
                 if (_user) {
                     app.socket.log(_user + ' deleted');
                     this.rooms[r].splice(_user, 1);
-
+                    if (this.rooms[r].length === 0) {
+                        delete this.rooms[r];
+                        app.socket.io.emit('room.deleted', r);
+                    } else {
+                        app.socket.io.emit('room.available', r, socket.id);
+                    }
                     break;
                 }
             }
