@@ -17,6 +17,7 @@
              * Init the creation of the game
              */
             init: function() {
+                var style;
                 var _a = app.assets;
                 var bg = app.game.add.group();
 
@@ -24,9 +25,6 @@
 
                 app.assets.winSong = app.game.add.audio('win-song');
                 app.assets.dieSong = app.game.add.audio('die-song');
-
-                // Gestion de la map
-                // app.map =
 
                 // Bad Guys group init
                 _a.badGuys = app.game.add.physicsGroup(Phaser.Physics.ARCADE);
@@ -49,7 +47,6 @@
                 _a.arrival.body.imovable = true;
                 _a.arrival.physicsBodyType = Phaser.Physics.ARCADE;
 
-
                 // Shadow layer
                 if (app.playerType === 'player') {
                     app.shadowTexture = app.game.add.bitmapData(app.game.width, app.game.height);
@@ -64,6 +61,10 @@
                     })
                 }
 
+                // Timer
+                app.timer.create();
+                app.timer.start();
+                app.timer.show();
 
                 app.cursors = app.game.input.keyboard.createCursorKeys();
 

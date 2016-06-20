@@ -9,8 +9,13 @@
              * End of the level
              */
             levelEnd: function() {
+                var infos = {
+                    room: app.room,
+                    infos: { map: app.mapNumber, score: app.timer.getTime() }
+                };
+
                 if (app.playerType === 'player') {
-                    app.socket.emit('game.win', app.room);
+                    app.socket.emit('game.win', infos);
                 }
 
                 var h = document.getElementById('francois-win');
@@ -21,6 +26,7 @@
 
                 app.game.world.removeAll();
                 app.states.create();
+                app.timer.reset();
 
                 app.assets.winSong.play();
 
@@ -36,6 +42,7 @@
             restartGame: function() {
                 app.game.world.removeAll();
                 app.states.create();
+                app.timer.reset();
             },
 
             updateGame: function() {

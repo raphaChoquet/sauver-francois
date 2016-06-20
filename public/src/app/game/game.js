@@ -17,6 +17,7 @@
             self.socket = socket;
             self.events = events;
             self.cursors = null;
+            self.timer = timer;
             self.states = {
                 preload: preload.init,
                 create: create.init,
@@ -39,6 +40,7 @@
     var create = require('./states/create')(app);
     var update = require('./states/update')(app);
     var events = require('./events/update.events')(app);
+    var timer = require('./utils/timer')(app);
     var maps = require('./utils/map');
 
     module.exports = app;

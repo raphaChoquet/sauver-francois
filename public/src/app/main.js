@@ -92,6 +92,3 @@ function join() {
     room = $(this).data('room');
     start();
 };
-
-
-//

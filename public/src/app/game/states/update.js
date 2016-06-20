@@ -8,6 +8,8 @@
             init: function() {
                 var _a = app.assets;
 
+                app.timer.update();
+
                 if (app.playerType === 'player') {
                     app.game.physics.arcade.collide(_a.president, _a.walls, app.events.restartGame, null, true);
                     app.game.physics.arcade.collide(_a.badGuys, _a.president, app.events.restartGame, null, true);
